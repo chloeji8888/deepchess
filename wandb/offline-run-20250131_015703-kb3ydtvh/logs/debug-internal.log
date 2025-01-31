@@ -1,0 +1,14 @@
+{"time":"2025-01-31T01:57:03.228654519Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/offline-run-20250131_015703-kb3ydtvh/logs/debug-core.log"}
+{"time":"2025-01-31T01:57:03.348402183Z","level":"INFO","msg":"created new stream","id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:03.348527636Z","level":"INFO","msg":"stream: started","id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:03.348505153Z","level":"INFO","msg":"handler: started","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:03.348554273Z","level":"INFO","msg":"writer: Do: started","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:03.348607376Z","level":"INFO","msg":"sender: started","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:03.355971995Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T01:57:15.257276882Z","level":"INFO","msg":"stream: closing","id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:15.257336386Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-31T01:57:15.258403117Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-31T01:57:15.258577528Z","level":"INFO","msg":"handler: closed","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:15.258606278Z","level":"INFO","msg":"sender: closed","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:15.258600863Z","level":"INFO","msg":"writer: Close: closed","stream_id":"kb3ydtvh"}
+{"time":"2025-01-31T01:57:15.258750598Z","level":"INFO","msg":"stream: closed","id":"kb3ydtvh"}

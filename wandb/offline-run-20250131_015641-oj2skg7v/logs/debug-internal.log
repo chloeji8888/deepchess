@@ -1,0 +1,14 @@
+{"time":"2025-01-31T01:56:41.452454665Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/offline-run-20250131_015641-oj2skg7v/logs/debug-core.log"}
+{"time":"2025-01-31T01:56:41.571060125Z","level":"INFO","msg":"created new stream","id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.571181605Z","level":"INFO","msg":"stream: started","id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.571316462Z","level":"INFO","msg":"writer: Do: started","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.571417475Z","level":"INFO","msg":"sender: started","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.57153267Z","level":"INFO","msg":"handler: started","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.577825547Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T01:56:41.792467608Z","level":"INFO","msg":"stream: closing","id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.792529857Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-31T01:56:41.793463555Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-31T01:56:41.793604779Z","level":"INFO","msg":"handler: closed","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.793628585Z","level":"INFO","msg":"writer: Close: closed","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.793693345Z","level":"INFO","msg":"sender: closed","stream_id":"oj2skg7v"}
+{"time":"2025-01-31T01:56:41.793731847Z","level":"INFO","msg":"stream: closed","id":"oj2skg7v"}

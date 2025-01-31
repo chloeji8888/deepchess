@@ -1,0 +1,62 @@
+Iteration 1 of 100
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1qkb1r/p1p3p1/4p2n/7p/Pp1Nb1P1/NP1P1p2/1BP2PBP/R1QK3R b kq - 1 14
+Legal moves: Rg8, Rh7, Be7, Bd6, Bc5, Kf7, Ke7, Kd7, Qc8, Qe7, Qd7, Qf6, Qd6, Qg5, Qd5, Qh4, Qxd4, Nd7, Nc6, Na6, Ng8, Nf7, Nf5, Nxg4, Bh7, Bb7, Bg6, Bc6, Bf5, Bd5, Bxd3, hxg4, bxa3, fxg2, g6, c6, a6, e5, h4, g5, c5, a5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1qkbn1/pb1p1p2/1pp3pr/4pR1p/P3N3/7P/1PPPPPP1/2BQKBNR w Kq - 0 8
+Legal moves: Rxf7, Rf6, Rxh5, Rg5, Rxe5+, Rf4, Rf3, Nf6+, Nd6+, Ng5, Nc5, Ng3, Nc3, Rh2, Nf3, a5, h4, g3, f3, e3, d3, c3, b3, g4, f4, d4, c4, b4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1qk2r/p1pp4/b4n1p/1pb1ppN1/P1P4P/4P3/1P1PQPPR/RNB1KB2 w Qkq - 0 10
+Legal moves: Nh7, Nf7, Ne6, Ne4, Nh3, Nf3, Rh3, Rh1, Qh5+, Qg4, Qf3, Qd3, Qd1, Kd1, Nc3, Na3, Ra3, Ra2, cxb5, axb5, h5, a5, e4, g3, f3, d3, b3, g4, f4, d4, b4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1bq2nr/ppp2kbp/2np1p2/3p2p1/P3P3/2PP4/1P3PPP/R1BQKBNR b KQ - 1 9
+Legal moves: Nge7, Nh6, Qf8, Qe8, Qe7, Qd7, Bd7, Be6, Bf5, Bg4, Bh3, Rb8, Bf8, Bh6, Kf8, Ke8, Ke7, Kg6, Ke6, Nb8, Nce7, Ne5, Na5, Nd4, Nb4, dxe4, h6, b6, a6, f5, g4, d4, h5, b5, a5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbqk1nr/pppp3p/4p3/5pp1/2PP2PP/2b4N/P2NPPR1/R1BQKB2 w Qkq - 2 9
+Legal moves: Nxg5, Nf4, Ng1, Rg3, Rh2, Rg1, Qa4, Qb3, Qc2, Ba3, Bb2, Rb1, hxg5, gxf5, h5, d5, c5, f3, e3, a3, f4, e4, a4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbqkbnr/1p1p1ppp/8/2p1p3/p1P1P3/1P1P1B2/PB3PPP/RN1QK1NR b KQkq - 0 9
+Legal moves: Ne7, Nh6, Nf6, Be7, Bd6, Ke7, Qe7, Qc7, Qf6, Qb6, Qg5, Qa5+, Qh4, Nc6, Na6, Ra7, Ra6, Ra5, axb3, h6, g6, f6, d6, b6, a3, h5, g5, f5, d5, b5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): Nnb1k1nr/1p1p2p1/2pb1p1p/p1q1P3/4B2P/P3P3/RPPP2P1/2BQK1NR b Kk - 0 12
+Legal moves: Rh7, Ne7, Kf8, Kd8, Kf7, Ke7, Na6, Bf8, Be7, Bc7, Bxe5, Qa7, Qb6, Qxe5, Qd5, Qb5, Qd4, Qc4, Qb4, Qxe3+, Qc3, Qxa3, Qxc2, fxe5, g6, b6, h5, f5, a4, g5, b5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r2k2nr/pbNqpp2/1p5b/3p2pp/1n3P2/1QPN2PP/PP1PP3/R1B1KB1R b Q - 1 13
+Legal moves: Rh7, Nf6, Kc8, Kxc7, Rc8, Rb8, Qe8, Qc8, Qxc7, Qe6, Qd6, Qc6, Qf5, Qb5, Qg4, Qa4, Qxh3, Bc8, Bc6, Ba6, Bf8, Bg7, Nc6, Na6, Nxd3+, Nc2+, Nxa2, gxf4, f6, e6, a6, b5, h4, g4, d4, f5, e5, a5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 1nbq1bnr/rp1pk1pp/2p5/p2Qpp2/7P/N3P3/PPPPKPP1/1RB2BNR b - - 3 7
+Legal moves: Nh6, Nf6, Qe8, Qc7, Qb6, Na6, Ke8, Kf6, Ra8, Ra6, cxd5, h6, g6, d6, b6, c5, f4, e4, a4, h5, g5, b5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1bq1b1r/2p1k3/ppn2ppn/7p/PPp2pP1/B3P3/2PP3P/RN2KBNR w K - 1 14
+Legal moves: Bb2, Bc1, Nh3, Nf3, Ne2, Bxc4, Bh3, Bd3, Bg2, Be2, Kf2, Ke2, Kd1, Nc3, Ra2, gxh5, exf4, g5, b5+, a5, e4, h3, d3, c3, h4, d4
+Please respond with your move in SAN format. Answer:
+Prepared dataset
+Prepare Training...
+Traceback (most recent call last):
+  File "/root/deepchess/chess_gym.py", line 319, in <module>
+    trainer.model, trainer.optimizer = accelerator.prepare(
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1339, in prepare
+    result = tuple(
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1340, in <genexpr>
+    self._prepare_one(obj, first_pass=True, device_placement=d) for obj, d in zip(args, device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1215, in _prepare_one
+    return self.prepare_model(obj, device_placement=device_placement)
+  File "/usr/local/lib/python3.10/dist-packages/accelerate/accelerator.py", line 1469, in prepare_model
+    model = torch.nn.parallel.DistributedDataParallel(
+  File "/usr/local/lib/python3.10/dist-packages/torch/nn/parallel/distributed.py", line 795, in __init__
+    _verify_param_shape_across_processes(self.process_group, parameters)
+  File "/usr/local/lib/python3.10/dist-packages/torch/distributed/utils.py", line 265, in _verify_param_shape_across_processes
+    return dist._verify_params_across_processes(process_group, tensors, logger)
+torch.distributed.DistBackendError: NCCL error in: ../torch/csrc/distributed/c10d/ProcessGroupNCCL.cpp:1331, invalid usage (run with NCCL_DEBUG=WARN for details), NCCL version 2.18.5
+ncclInvalidUsage: This usually reflects invalid usage of NCCL library.
+Last error:
+Duplicate GPU detected : rank 1 and rank 3 both on CUDA device 57000

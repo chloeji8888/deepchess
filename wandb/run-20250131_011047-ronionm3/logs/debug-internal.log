@@ -1,0 +1,15 @@
+{"time":"2025-01-31T01:10:47.931219835Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_011047-ronionm3/logs/debug-core.log"}
+{"time":"2025-01-31T01:10:48.050084254Z","level":"INFO","msg":"created new stream","id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.050155194Z","level":"INFO","msg":"stream: started","id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.050210674Z","level":"INFO","msg":"handler: started","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.050224995Z","level":"INFO","msg":"writer: Do: started","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.050325165Z","level":"INFO","msg":"sender: started","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.263020383Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T01:10:48.446697934Z","level":"INFO","msg":"stream: closing","id":"ronionm3"}
+{"time":"2025-01-31T01:10:48.446732334Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-31T01:10:48.447484681Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-31T01:10:49.567985922Z","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-31T01:10:49.755296759Z","level":"INFO","msg":"handler: closed","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:49.755365355Z","level":"INFO","msg":"writer: Close: closed","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:49.755383878Z","level":"INFO","msg":"sender: closed","stream_id":"ronionm3"}
+{"time":"2025-01-31T01:10:49.7555606Z","level":"INFO","msg":"stream: closed","id":"ronionm3"}

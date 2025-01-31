@@ -1,0 +1,43 @@
+Iteration 1 of 100
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbq1bnr/pNp1p3/3k4/3p1Ppp/3P3P/8/PPP2PPR/R1BQKBN1 b Q - 0 11
+Legal moves: Kd7, Kc6, Bxb7
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbqk1r1/p1pn1ppp/1p2p3/PNb5/1PPp3P/4P3/3PQPP1/R1B1KBNR w KQq - 0 10
+Legal moves: Nxc7+, Nxa7, Nd6+, Nxd4, Nc3, Na3, Qh5, Qg4, Qf3, Qd3, Qd1, Rh3, Rh2, Nh3, Nf3, Kd1, Ba3, Bb2, Ra4, Ra3, Ra2, Rb1, axb6, bxc5, exd4, a6, h5, e4, g3, f3, d3, g4, f4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnb1k1n1/pppp1p2/3bp1pr/6qp/1PP5/B1N2P1P/P2PP1P1/R2QKBNR w KQq - 3 8
+Legal moves: Nd5, Nb5, Ne4, Na4, Nb1, Bb2, Bc1, Rh2, Kf2, Qa4, Qb3, Qc2, Qc1, Qb1, Rc1, Rb1, c5, b5, h4, f4, g3, e3, d3, g4, e4, d4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbqkb1r/p1p1p2p/1p1p2p1/5p1n/1P1P4/N1P3PB/P3PP1P/R1BQK1NR w KQkq - 0 7
+Legal moves: Bxf5, Bg4, Bg2, Bf1, Nb5, Nc4, Nc2, Nb1, Nf3, Kd2, Kf1, Qa4+, Qd3, Qb3, Qd2, Qc2, Bh6, Bg5, Bf4, Be3, Bd2, Bb2, Rb1, d5, b5, g4, c4, f3, e3, f4, e4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1q2kr/2p5/3pNnpb/pp2pp1p/4P2P/1P1PN3/PBP2PP1/R2QKB1R b K - 2 15
+Legal moves: Rh7, Kh7, Kf7, Qf8, Qe8, Qc8, Qe7, Qd7, Nbd7, Nc6, Na6, Ra7, Ra6, Bf8, Bg7, Bg5, Bf4, Bxe3, Ne8, Nh7, Nfd7, Nd5, Ng4, Nxe4, fxe4, c6, g5, d5, f4, b4, a4, c5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 1nb2b1r/1p1kpp1p/r1pp1np1/p7/3qPP2/1P1P2PP/P1P3BR/RNBQK1N1 w Q - 3 10
+Legal moves: Rh1, Bf3, Bh1, Bf1, Nf3, Ne2, Ke2, Kd2, Kf1, Qh5, Qg4+, Qf3, Qe2, Qd2, Be3, Ba3, Bd2, Bb2, Nc3, Na3, Nd2, f5, e5, h4, g4, b4, c3, a3, c4, a4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1bq1bnr/pppp2p1/5pkp/2Pnp3/6PP/4PP2/PP1PN3/R1BQKBNR b KQ - 0 9
+Legal moves: Rh7, Nge7, Be7, Bd6, Bxc5, Qe8, Qe7, Rb8, Kh7, Kf7, Nde7, Nb6, Nf4, Nb4, Nxe3, Nc3, d6, c6, b6, a6, h5, f5, e4, b5, a5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1b1k1nr/1pqp1pbp/p3p3/1Pp3p1/2Pn4/1Q4P1/P2PPP1P/RNB1KBNR w KQkq - 2 9
+Legal moves: Qb4, Qa4, Qf3, Qe3, Qd3, Qc3, Qa3, Qc2, Qb2, Qd1, Nh3, Nf3, Bh3, Bg2, Kd1, Ba3, Bb2, Nc3, Na3, bxa6, b6, g4, h3, f3, e3, d3, a3, h4, f4, e4, a4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 1nbqkbnr/rp1ppp1p/6p1/pp6/2P5/B5P1/P2PPP1P/RN1QKBNR w KQk - 0 7
+Legal moves: Bxe7, Bd6, Bc5, Bb4, Bb2, Bc1, Nh3, Nf3, Bh3, Bg2, Qa4, Qb3, Qc2, Qc1, Nc3, cxb5, c5, g4, h3, f3, e3, d3, h4, f4, e4, d4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1k1bnr/1pp1p2p/p2q1pp1/P2p1b2/2P1P3/BP3P1P/N2P3R/1RQ1KBN1 b - - 0 15
+Legal moves: Nh6, Bg7, Bh6, Ke8, Kc8, Kd7, Nd7, Nc6, Ra7, Qd7, Qe6, Qc6, Qb6, Qe5, Qc5, Qf4, Qb4, Qg3+, Qxa3, Qxh2, Bc8, Bd7, Be6, Bg4, Bxe4, Bxh3, dxe4, dxc4, h6, e6, c6, b6, g5, d4, h5, e5, c5, b5
+Please respond with your move in SAN format. Answer:
+Prepared dataset
+Prepare Training...

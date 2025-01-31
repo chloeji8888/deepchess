@@ -1,0 +1,7 @@
+{"time":"2025-01-31T02:31:49.856046572Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_023149-bbc9t0vg/logs/debug-core.log"}
+{"time":"2025-01-31T02:31:49.964309753Z","level":"INFO","msg":"created new stream","id":"bbc9t0vg"}
+{"time":"2025-01-31T02:31:49.964339337Z","level":"INFO","msg":"stream: started","id":"bbc9t0vg"}
+{"time":"2025-01-31T02:31:49.964361601Z","level":"INFO","msg":"writer: Do: started","stream_id":"bbc9t0vg"}
+{"time":"2025-01-31T02:31:49.964396194Z","level":"INFO","msg":"handler: started","stream_id":"bbc9t0vg"}
+{"time":"2025-01-31T02:31:49.964410341Z","level":"INFO","msg":"sender: started","stream_id":"bbc9t0vg"}
+{"time":"2025-01-31T02:31:50.307438863Z","level":"INFO","msg":"Starting system monitor"}

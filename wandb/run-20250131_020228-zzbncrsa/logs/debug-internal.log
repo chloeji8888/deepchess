@@ -1,0 +1,8 @@
+{"time":"2025-01-31T02:02:29.21682903Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_020228-zzbncrsa/logs/debug-core.log"}
+{"time":"2025-01-31T02:02:29.326159689Z","level":"INFO","msg":"created new stream","id":"zzbncrsa"}
+{"time":"2025-01-31T02:02:29.32619598Z","level":"INFO","msg":"stream: started","id":"zzbncrsa"}
+{"time":"2025-01-31T02:02:29.326259806Z","level":"INFO","msg":"writer: Do: started","stream_id":"zzbncrsa"}
+{"time":"2025-01-31T02:02:29.326273766Z","level":"INFO","msg":"sender: started","stream_id":"zzbncrsa"}
+{"time":"2025-01-31T02:02:29.326483966Z","level":"INFO","msg":"handler: started","stream_id":"zzbncrsa"}
+{"time":"2025-01-31T02:02:29.893556712Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T02:05:05.903218557Z","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/chloeji8888-carnegie-mellon-university/chess-rl/zzbncrsa/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}

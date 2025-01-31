@@ -1,0 +1,14 @@
+{"time":"2025-01-31T01:52:06.03246781Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/offline-run-20250131_015205-yfdrpw1i/logs/debug-core.log"}
+{"time":"2025-01-31T01:52:06.151107474Z","level":"INFO","msg":"created new stream","id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.151184903Z","level":"INFO","msg":"stream: started","id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.151298537Z","level":"INFO","msg":"writer: Do: started","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.151424108Z","level":"INFO","msg":"sender: started","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.151442145Z","level":"INFO","msg":"handler: started","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.159533754Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T01:52:06.378123649Z","level":"INFO","msg":"stream: closing","id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.378151251Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-31T01:52:06.378801708Z","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-31T01:52:06.378924035Z","level":"INFO","msg":"handler: closed","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.378940402Z","level":"INFO","msg":"writer: Close: closed","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.378979101Z","level":"INFO","msg":"sender: closed","stream_id":"yfdrpw1i"}
+{"time":"2025-01-31T01:52:06.379028438Z","level":"INFO","msg":"stream: closed","id":"yfdrpw1i"}

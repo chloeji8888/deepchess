@@ -1,0 +1,7 @@
+{"time":"2025-01-31T02:35:18.305881485Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_023518-ubp6bbs4/logs/debug-core.log"}
+{"time":"2025-01-31T02:35:18.42648099Z","level":"INFO","msg":"created new stream","id":"ubp6bbs4"}
+{"time":"2025-01-31T02:35:18.426594556Z","level":"INFO","msg":"stream: started","id":"ubp6bbs4"}
+{"time":"2025-01-31T02:35:18.42663777Z","level":"INFO","msg":"writer: Do: started","stream_id":"ubp6bbs4"}
+{"time":"2025-01-31T02:35:18.426652655Z","level":"INFO","msg":"handler: started","stream_id":"ubp6bbs4"}
+{"time":"2025-01-31T02:35:18.42666478Z","level":"INFO","msg":"sender: started","stream_id":"ubp6bbs4"}
+{"time":"2025-01-31T02:35:18.690380894Z","level":"INFO","msg":"Starting system monitor"}

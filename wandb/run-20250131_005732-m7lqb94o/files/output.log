@@ -1,0 +1,45 @@
+Iteration 1 of 100
+Traceback (most recent call last):
+  File "/root/deepchess/chess_gym.py", line 307, in <module>
+    prompts = [generate_random_prompt(stockfish_path) for _ in range(num_samples)]
+  File "/root/deepchess/chess_gym.py", line 307, in <listcomp>
+    prompts = [generate_random_prompt(stockfish_path) for _ in range(num_samples)]
+  File "/root/deepchess/chess_gym.py", line 208, in generate_random_prompt
+    prompt, _ = local_env.reset(random_moves=True)
+  File "/root/deepchess/chess_gym.py", line 57, in reset
+    self._init_engine()  # Ensure engine exists
+  File "/root/deepchess/chess_gym.py", line 34, in _init_engine
+    self.engine = chess.engine.SimpleEngine.popen_uci(self.stockfish_path)
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 3052, in popen_uci
+    return cls.popen(UciProtocol, command, timeout=timeout, debug=debug, setpgrp=setpgrp, **popen_args)
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 3044, in popen
+    return run_in_background(background, name=f"{cls.__name__} (command={command!r})", debug=debug)
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 77, in run_in_background
+    return future.result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 458, in result
+    return self.__get_result()
+  File "/usr/lib/python3.10/concurrent/futures/_base.py", line 403, in __get_result
+    raise self._exception
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 71, in background
+    asyncio.run(coroutine(future), debug=debug)
+  File "/usr/lib/python3.10/asyncio/runners.py", line 44, in run
+    return loop.run_until_complete(main)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 3032, in background
+    transport, protocol = await Protocol.popen(command, setpgrp=setpgrp, **popen_args)
+  File "/usr/local/lib/python3.10/dist-packages/chess/engine.py", line 1212, in popen
+    return await asyncio.get_running_loop().subprocess_exec(cls, *command, **popen_args)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 1681, in subprocess_exec
+    transport = await self._make_subprocess_transport(
+  File "/usr/lib/python3.10/asyncio/unix_events.py", line 207, in _make_subprocess_transport
+    transp = _UnixSubprocessTransport(self, protocol, args, shell,
+  File "/usr/lib/python3.10/asyncio/base_subprocess.py", line 36, in __init__
+    self._start(args=args, shell=shell, stdin=stdin, stdout=stdout,
+  File "/usr/lib/python3.10/asyncio/unix_events.py", line 799, in _start
+    self._proc = subprocess.Popen(
+  File "/usr/lib/python3.10/subprocess.py", line 971, in __init__
+    self._execute_child(args, executable, preexec_fn, close_fds,
+  File "/usr/lib/python3.10/subprocess.py", line 1863, in _execute_child
+    raise child_exception_type(errno_num, err_msg, err_filename)
+OSError: [Errno 8] Exec format error: '/usr/local/bin/stockfish'

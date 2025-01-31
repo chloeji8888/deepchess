@@ -1,0 +1,10 @@
+{"time":"2025-01-31T02:01:06.936175035Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_020106-xcahn65k/logs/debug-core.log"}
+{"time":"2025-01-31T02:01:07.049089022Z","level":"INFO","msg":"created new stream","id":"xcahn65k"}
+{"time":"2025-01-31T02:01:07.049158211Z","level":"INFO","msg":"stream: started","id":"xcahn65k"}
+{"time":"2025-01-31T02:01:07.049172038Z","level":"INFO","msg":"writer: Do: started","stream_id":"xcahn65k"}
+{"time":"2025-01-31T02:01:07.049227451Z","level":"INFO","msg":"handler: started","stream_id":"xcahn65k"}
+{"time":"2025-01-31T02:01:07.049249033Z","level":"INFO","msg":"sender: started","stream_id":"xcahn65k"}
+{"time":"2025-01-31T02:01:07.278961577Z","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-31T02:01:09.717719942Z","level":"INFO","msg":"stream: closing","id":"xcahn65k"}
+{"time":"2025-01-31T02:01:09.717769802Z","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-31T02:01:09.718673052Z","level":"INFO","msg":"Stopped system monitor"}

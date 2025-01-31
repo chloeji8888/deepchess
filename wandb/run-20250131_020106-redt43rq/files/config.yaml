@@ -1,0 +1,45 @@
+_wandb:
+    value:
+        cli_version: 0.19.5
+        m: []
+        python_version: 3.10.12
+        t:
+            "1":
+                - 1
+                - 11
+                - 41
+                - 49
+                - 51
+                - 55
+                - 71
+                - 84
+                - 98
+            "2":
+                - 1
+                - 11
+                - 41
+                - 49
+                - 51
+                - 55
+                - 71
+                - 84
+                - 98
+            "3":
+                - 16
+                - 23
+                - 55
+            "4": 3.10.12
+            "5": 0.19.5
+            "6": 4.48.2
+            "8":
+                - 5
+            "12": 0.19.5
+            "13": linux-x86_64
+learning_rate:
+    value: 1e-05
+model:
+    value: Qwen/Qwen2-0.5B-Instruct
+num_iterations:
+    value: 100
+num_samples:
+    value: 10
