@@ -216,7 +216,7 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
 
-LLM_MAX_LENGTH = 512
+LLM_MAX_LENGTH = 256
 
 grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     output_dir="chess-grpo",
