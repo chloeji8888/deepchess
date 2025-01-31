@@ -10,6 +10,9 @@ from peft import LoraConfig
 import re
 import wandb
 from datasets import Dataset
+from accelerate import Accelerator
+
+accelerator = Accelerator()
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -321,15 +324,22 @@ for i in range(num_iterations):
         processing_class=tokenizer,
     )
     print("[DEBUG] Trainer created successfully")
+    trainer.model, trainer.optimizer = accelerator.prepare(
+        trainer.model, trainer.optimizer
+    )
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
     
     # Run evaluation every 5 iters
-    if (i + 1) % 5 == 0:
-        print(f"\nRunning evaluation after iter {i+1}")
-        evaluate_model(trainer.model, tokenizer)
+    accelerator.wait_for_everyone()
+    if accelerator.is_main_process:
+        trainer.save_model(f"chess-grpo-epoch-{i}")
+        if (i + 1) % 5 == 0:
+            print(f"\nRunning evaluation after iter {i+1}")
+            evaluate_model(trainer.model, tokenizer)
+
+    accelerator.wait_for_everyone()
     
-    # Finish WandB logging
-    if use_wandb:
-        wandb.finish()
+# Finish WandB logging
+wandb.finish()
