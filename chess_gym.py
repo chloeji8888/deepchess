@@ -248,7 +248,7 @@ def generate_random_prompt():
 # Pre-generate all prompts before training
 num_iterations = 200
 num_samples = 10000
-num_test_samples = 100
+num_test_samples = 5
 
 
 if accelerator.is_main_process:
@@ -265,7 +265,7 @@ if accelerator.is_main_process:
         }
     )
 
-def evaluate_model(model, tokenizer, num_samples=5):
+def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
     test_prompts = [generate_random_prompt() for _ in range(num_test_samples)]
     results = []
@@ -362,7 +362,7 @@ for i in range(num_iterations):
     )
     if i % 5 == 0:
         print(f"\nRunning evaluation: Iter {i+1}")
-        evaluate_model(trainer.model, tokenizer)
+        evaluate_model(trainer.model, tokenizer, num_test_samples)
     print("[DEBUG] Trainer created successfully")
     
     print("[DEBUG] Starting training...")
