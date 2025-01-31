@@ -189,7 +189,6 @@ grpo_config = GRPOConfig(
     gradient_accumulation_steps=8,
     max_completion_length=512,
     dataloader_pin_memory=True,
-    use_vllm=True,
 )
 
 peft_config = LoraConfig(
@@ -212,24 +211,17 @@ def generate_random_prompt():
 num_iterations = 100
 num_samples = 100
 
-# Modify the wandb initialization to be optional
-try:
-    use_wandb = True  # Set this to False to disable wandb
-    if use_wandb:
-        wandb.login()  # This will use API key from environment variable if set
-        wandb.init(
-            project="chess-rl",
-            config={
-                "model": model_id,
-                "learning_rate": grpo_config.learning_rate,
-                "num_iterations": num_iterations,
-                "num_samples": num_samples,
-            }
-        )
-except Exception as e:
-    print(f"WandB initialization failed: {e}")
-    use_wandb = False
 
+wandb.login()  # This will use API key from environment variable if set
+wandb.init(
+    project="chess-rl",
+    config={
+        "model": model_id,
+        "learning_rate": grpo_config.learning_rate,
+        "num_iterations": num_iterations,
+        "num_samples": num_samples,
+    }
+)
 
 def evaluate_model(model, tokenizer, num_samples=5):
     """Evaluate model on fixed set of positions"""
