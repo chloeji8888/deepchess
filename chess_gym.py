@@ -11,8 +11,36 @@ import re
 import wandb
 from datasets import Dataset
 from accelerate import Accelerator
+from multiprocessing import Pool, cpu_count
 
 accelerator = Accelerator()
+
+def generate_prompts_batch(batch_size):
+    """Generate a batch of prompts"""
+    prompts = []
+    local_env = ChessEnv()
+    for _ in range(batch_size):
+        prompt, _ = local_env.reset(random_moves=True)
+        prompts.append(prompt)
+    local_env.close()
+    return prompts
+
+def parallel_generate_prompts(total_samples, batch_size=100):
+    """Generate prompts in parallel using multiple processes"""
+    num_processes = min(cpu_count(), 8)  # Limit to 8 processes max
+    samples_per_process = batch_size
+    num_batches = (total_samples + samples_per_process - 1) // samples_per_process
+    
+    print(f"Generating {total_samples} prompts using {num_processes} processes...")
+    with Pool(processes=num_processes) as pool:
+        results = pool.map(generate_prompts_batch, 
+                         [samples_per_process] * num_batches)
+    
+    # Flatten results and trim to desired length
+    all_prompts = [prompt for batch in results for prompt in batch]
+    return all_prompts[:total_samples]
+
+
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -219,7 +247,8 @@ def generate_random_prompt():
 
 # Pre-generate all prompts before training
 num_iterations = 100
-num_samples = 1
+num_samples = 10000
+num_test_samples = 100
 
 
 if accelerator.is_main_process:
@@ -232,12 +261,13 @@ if accelerator.is_main_process:
             "learning_rate": grpo_config.learning_rate,
             "num_iterations": num_iterations,
             "num_samples": num_samples,
+            "num_test_samples": num_test_samples,
         }
     )
 
 def evaluate_model(model, tokenizer, num_samples=5):
     """Evaluate model on fixed set of positions"""
-    test_prompts = [generate_random_prompt() for _ in range(num_samples)]
+    test_prompts = [generate_random_prompt() for _ in range(num_test_samples)]
     results = []
     
     for prompt in test_prompts:
@@ -317,7 +347,7 @@ for i in range(num_iterations):
     print(f"[DEBUG] Starting Iteration {i+1} of {num_iterations}")
     print("="*50 + "\n")
     
-    prompts = [generate_random_prompt() for _ in range(num_samples)] # TODO: parallelize sample generation (at leat 50,000)
+    prompts = parallel_generate_prompts(num_samples)
     dataset = Dataset.from_dict({"prompt": prompts})
     print("[DEBUG] Dataset prepared with prompts:", len(prompts))
     
