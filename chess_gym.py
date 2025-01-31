@@ -247,7 +247,7 @@ def generate_random_prompt():
 
 # Pre-generate all prompts before training
 num_iterations = 10
-num_samples = 1000
+num_samples = 500
 num_test_samples = 5
 
 
