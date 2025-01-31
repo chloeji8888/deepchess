@@ -10,14 +10,6 @@ from peft import LoraConfig
 import re
 import wandb
 from datasets import Dataset
-from accelerate import Accelerator, DistributedDataParallelKwargs
-
-accelerator = Accelerator(
-    mixed_precision='bf16',
-    gradient_accumulation_steps=8,
-    device_placement=True,
-    kwargs_handlers=[DistributedDataParallelKwargs(find_unused_parameters=True)]
-)
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -185,7 +177,7 @@ def reward_function(prompts, completions):
 env = ChessEnv(
     agent_color=chess.WHITE  # or chess.BLACK
 )
-model_id = "Qwen/Qwen2-0.5B-Instruct" # "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B"
+model_id = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" # "Qwen/Qwen2-0.5B-Instruct" # 
 model = AutoModelForCausalLM.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
@@ -195,8 +187,9 @@ grpo_config = GRPOConfig(
     learning_rate=1e-5,
     logging_steps=10,
     gradient_accumulation_steps=8,
-    max_completion_length=128,
-    dataloader_pin_memory=True
+    max_completion_length=512,
+    dataloader_pin_memory=True,
+    use_vllm=True,
 )
 
 peft_config = LoraConfig(
@@ -217,7 +210,7 @@ def generate_random_prompt():
 
 # Pre-generate all prompts before training
 num_iterations = 100
-num_samples = 10
+num_samples = 100
 
 # Modify the wandb initialization to be optional
 try:
@@ -297,13 +290,14 @@ def evaluate_model(model, tokenizer, num_samples=5):
             "eval/avg_reward": avg_reward,
             "eval/illegal_rate": illegal_rate,
             "eval/examples": wandb.Table(
-                columns=["Position", "Model Move", "Best Move", "Score Δ", "Reward"],
+                columns=["Position", "Model Move", "Best Move", "Score Δ", "Reward", "Raw Completion"],
                 data=[[
                     r['prompt'].split('\n')[1].split(': ')[1],  # FEN
                     r['model_move'],
                     r['best_move'],
                     r['score_delta'],
-                    r['reward']
+                    r['reward'],
+                    r['completion']
                 ] for r in results[:5]]  # Log first 5 examples
             )
         })
@@ -319,7 +313,7 @@ for i in range(num_iterations):
     print(f"[DEBUG] Starting Iteration {i+1} of {num_iterations}")
     print("="*50 + "\n")
     
-    prompts = [generate_random_prompt() for _ in range(num_samples)]
+    prompts = [generate_random_prompt() for _ in range(num_samples)] # TODO: parallelize sample generation (at leat 50,000)
     dataset = Dataset.from_dict({"prompt": prompts})
     print("[DEBUG] Dataset prepared with prompts:", len(prompts))
     
@@ -333,28 +327,14 @@ for i in range(num_iterations):
         processing_class=tokenizer,
     )
     print("[DEBUG] Trainer created successfully")
-    
-    print("[DEBUG] Preparing model and optimizer...")
-    trainer.model, trainer.optimizer = accelerator.prepare(
-        trainer.model, trainer.optimizer
-    )
-    print("[DEBUG] Model and optimizer prepared")
-    
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
     
-    # Run evaluation every 5 epochs
+    # Run evaluation every 5 iters
     if (i + 1) % 5 == 0:
-        print(f"\nRunning evaluation after epoch {i+1}")
+        print(f"\nRunning evaluation after iter {i+1}")
         evaluate_model(trainer.model, tokenizer)
-        
-    # Save model checkpoints
-    accelerator.wait_for_everyone()
-    if accelerator.is_main_process:
-        trainer.save_model(f"chess-grpo-epoch-{i}")
-        
-    accelerator.wait_for_everyone()
     
     # Finish WandB logging
     if use_wandb:

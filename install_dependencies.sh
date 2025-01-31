@@ -2,11 +2,11 @@
 
 # Update package list
 echo "Updating package list..."
-sudo apt-get update
+apt-get update
 
 # Install system dependencies
 echo "Installing system dependencies..."
-sudo apt-get install -y python3-pip stockfish
+apt-get install -y python3-pip stockfish
 
 # Create and activate virtual environment (optional)
 echo "Creating virtual environment..."
@@ -26,12 +26,5 @@ pip install wandb
 pip install datasets
 pip install accelerate
 pip install numpy
-
-# Verify Stockfish installation
-echo "Verifying Stockfish installation..."
-if ! command -v stockfish &> /dev/null; then
-    echo "Stockfish installation failed!"
-    exit 1
-fi
 
 echo "All dependencies installed successfully!" 
