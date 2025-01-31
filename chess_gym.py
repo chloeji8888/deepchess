@@ -10,9 +10,7 @@ from peft import LoraConfig
 import re
 import wandb
 from datasets import Dataset
-from accelerate import Accelerator
-
-accelerator = Accelerator()
+from accelerate.utils import is_main_process
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -165,14 +163,16 @@ def reward_function(prompts, completions):
     finally:
         local_env.close()
         
-    if wandb.run is not None:
+    if wandb.run is not None and is_main_process():  # Add is_main_process check
         wandb.log({
             "samples": wandb.Table(
                 data=[[s["prompt"], s["completion"], s["move"], s["reward"]] 
-                      for s in samples_to_log[:5]],  # Log first 5 samples
+                      for s in samples_to_log[:5]],
                 columns=["prompt", "completion", "move", "reward"]
             )
         })
+    
+    return rewards
         
     return rewards
 
@@ -217,16 +217,18 @@ num_iterations = 100
 num_samples = 100
 
 
-wandb.login()  # This will use API key from environment variable if set
-wandb.init(
-    project="chess-rl",
-    config={
-        "model": model_id,
-        "learning_rate": grpo_config.learning_rate,
-        "num_iterations": num_iterations,
-        "num_samples": num_samples,
-    }
-)
+if is_main_process():
+    print("Initializing WandB...")
+    wandb.login()  # This will use API key from environment variable if set
+    wandb.init(
+        project="chess-rl",
+        config={
+            "model": model_id,
+            "learning_rate": grpo_config.learning_rate,
+            "num_iterations": num_iterations,
+            "num_samples": num_samples,
+        }
+    )
 
 def evaluate_model(model, tokenizer, num_samples=5):
     """Evaluate model on fixed set of positions"""
@@ -280,7 +282,7 @@ def evaluate_model(model, tokenizer, num_samples=5):
     illegal_rate = sum(1 for r in results if not r['valid'])/len(results)
     
     # Log to WandB
-    if wandb.run is not None:
+    if wandb.run is not None and is_main_process(): 
         wandb.log({
             "eval/accuracy": accuracy,
             "eval/avg_score_delta": avg_score_delta,
@@ -324,22 +326,16 @@ for i in range(num_iterations):
         processing_class=tokenizer,
     )
     print("[DEBUG] Trainer created successfully")
-    trainer.model, trainer.optimizer = accelerator.prepare(
-        trainer.model, trainer.optimizer
-    )
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
     
     # Run evaluation every 5 iters
-    accelerator.wait_for_everyone()
-    if accelerator.is_main_process:
-        trainer.save_model(f"chess-grpo-epoch-{i}")
-        if (i + 1) % 5 == 0:
-            print(f"\nRunning evaluation after iter {i+1}")
-            evaluate_model(trainer.model, tokenizer)
+    trainer.save_model(f"chess-grpo-epoch-{i}")
+    if (i + 1) % 5 == 0:
+        print(f"\nRunning evaluation after iter {i+1}")
+        evaluate_model(trainer.model, tokenizer)
 
-    accelerator.wait_for_everyone()
-    
 # Finish WandB logging
-wandb.finish()
+if is_main_process():
+    wandb.finish()
