@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Update package list
+echo "Updating package list..."
+sudo apt-get update
+
+# Install system dependencies
+echo "Installing system dependencies..."
+sudo apt-get install -y python3-pip stockfish
+
+# Create and activate virtual environment (optional)
+echo "Creating virtual environment..."
+python3 -m venv chess_env
+source chess_env/bin/activate
+
+# Install Python packages
+echo "Installing Python dependencies..."
+pip install --upgrade pip
+pip install torch
+pip install gymnasium
+pip install python-chess
+pip install transformers
+pip install trl
+pip install peft
+pip install wandb
+pip install datasets
+pip install accelerate
+pip install numpy
+
+# Verify Stockfish installation
+echo "Verifying Stockfish installation..."
+if ! command -v stockfish &> /dev/null; then
+    echo "Stockfish installation failed!"
+    exit 1
+fi
+
+echo "All dependencies installed successfully!" 
