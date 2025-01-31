@@ -1,0 +1,15 @@
+{"time":"2025-01-26T16:53:06.699661-08:00","level":"INFO","msg":"stream: starting","core version":"0.19.4","symlink path":"/Users/chloe/Desktop/deepchess/wandb/run-20250126_165305-14vpliur/logs/debug-core.log"}
+{"time":"2025-01-26T16:53:07.14341-08:00","level":"INFO","msg":"created new stream","id":"14vpliur"}
+{"time":"2025-01-26T16:53:07.143474-08:00","level":"INFO","msg":"stream: started","id":"14vpliur"}
+{"time":"2025-01-26T16:53:07.143563-08:00","level":"INFO","msg":"sender: started","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:53:07.143614-08:00","level":"INFO","msg":"handler: started","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:53:07.143858-08:00","level":"INFO","msg":"writer: Do: started","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:53:07.455317-08:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-01-26T16:54:48.321617-08:00","level":"INFO","msg":"stream: closing","id":"14vpliur"}
+{"time":"2025-01-26T16:54:48.321672-08:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-01-26T16:54:48.322543-08:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-01-26T16:54:48.794245-08:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-01-26T16:54:48.99304-08:00","level":"INFO","msg":"handler: closed","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:54:48.993047-08:00","level":"INFO","msg":"writer: Close: closed","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:54:48.993065-08:00","level":"INFO","msg":"sender: closed","stream_id":"14vpliur"}
+{"time":"2025-01-26T16:54:48.993389-08:00","level":"INFO","msg":"stream: closed","id":"14vpliur"}

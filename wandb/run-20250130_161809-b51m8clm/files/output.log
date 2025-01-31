@@ -1,0 +1,102 @@
+Iteration 1 of 100
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1bqkb1r/1ppnp2p/p4n2/3p1pp1/1P2PP2/B1N4N/P1PP2PP/1R1QKB1R b Kkq - 4 7
+Legal moves: Rg8, Bg7, Bh6, Kf7, Rb8, Ra7, Nb8, Nb6, Ne5, Nc5, Ng8, Nh5, Ng4, Nxe4, gxf4, fxe4, dxe4, h6, e6, c6, b6, a5, g4, d4, h5, e5, c5, b5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 1rb1kb1r/pp1qpp2/2n2npp/3p4/2p1BP2/P1P3P1/1P1PP2P/RNBQ1KNR w k - 0 10
+Legal moves: Bxg6, Bf5, Bxd5, Bf3, Bd3, Bg2, Bc2, Nh3, Nf3, Kg2, Kf2, Ke1, Qa4, Qb3, Qc2, Qe1, Ra2, f5, g4, a4, h3, e3, d3, b3, h4, d4, b4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): r1b1k2r/p1pqbpBp/np4p1/3pp3/P3P3/1QPPN2P/1P3PP1/R3KBNR b Kkq - 2 14
+Legal moves: Rg8, Rf8, Kd8, Bb7, Rb8, Bf8, Bd8, Bf6, Bd6, Bg5, Bc5, Bh4, Bb4, Ba3, Qd8, Qe6, Qd6, Qc6, Qf5, Qb5, Qg4, Qxa4, Qxh3, Nb8, Nc5, Nb4, dxe4, h6, f6, c6, g5, b5, d4, h5, f5, c5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnb2knr/1p4pp/p1pppp2/7q/1P2PPP1/1QP4B/1P1P1K1P/RNB3NR w - - 0 10
+Legal moves: Bg2, Bf1, Qxe6, Qd5, Qc4, Qa4, Qa3, Qc2, Qa2, Qd1, Kg3, Kf3, Ke3, Kg2, Ke2, Kf1, Ke1, Nf3, Ne2, Na3, Rxa6, Ra5, Ra4, Ra3, Ra2, gxh5, g5, f5, e5, b5, c4, d3, d4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 2bqk2r/rp1pbp1p/7n/p2p2N1/P1P3P1/3P1K2/1P1QPP1P/R1B2BR1 b k - 1 15
+Legal moves: Rg8, Rf8, Kf8, Qc7, Qb6, Bf8, Bf6, Bd6, Bxg5, Bc5, Bb4, Ba3, Ra8, Ra6, Ng8, Nf5, Nxg4, O-O, dxc4, f6, d6, b6, d4, f5, b5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnb1kbn1/pBppqpp1/1p2p2r/7p/1P2PP2/7N/P1PP2PP/RNBQK2R b KQq - 2 6
+Legal moves: Nf6, Kd8, Bxb7, Nc6, Na6, Qd8, Qf6, Qd6, Qg5, Qc5, Qh4+, Qxb4, Rh8, Rh7, Rg6, Rf6, g6, f6, d6, c6, a6, e5, b5, h4, g5, f5, d5, c5, a5
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnq1k1n1/2ppb1p1/pQ1Pp2r/5pp1/2P2P1P/N3PN2/PP6/R1BK1B1R w - - 1 15
+Legal moves: Qxb8, Qxc7, Qb7, Qa7, Qc6, Qxa6, Qc5, Qb5, Qa5, Qd4, Qb4, Qb3, Nxg5, Ne5, Nd4, Nh2, Nd2, Ng1, Ne1, Nb5, Nc2, Nb1, Rh3, Rh2, Rg1, Bh3, Bd3, Bg2, Be2, Ke2, Kd2, Kc2, Ke1, Bd2, Rb1, dxe7, dxc7, hxg5, fxg5, h5, c5, e4, b3, b4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rnbqk2r/1p1pnppp/p2b4/2P1p3/4P1Q1/8/P1PPBPPP/RNB1K1NR w KQkq - 4 6
+Legal moves: Qxg7, Qxd7+, Qg6, Qe6, Qh5, Qg5, Qf5, Qh4, Qf4, Qh3, Qg3, Qf3, Bxa6, Bb5, Bc4, Bf3, Bd3, Bf1, Bd1, Nh3, Nf3, Kf1, Kd1, Ba3, Bb2, Nc3, Na3, cxd6, c6, h3, g3, f3, d3, c3, a3, h4, f4, d4, c4, a4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): rn1qkbnr/1pp1ppp1/p7/3p1b1p/4N3/2P5/PP1PPPPP/R1BQKBNR w KQkq - 0 6
+Legal moves: Nf6+, Nd6+, Ng5, Nc5, Ng3, Nh3, Nf3, Qa4+, Qb3, Qc2, Rb1, c4, h3, g3, f3, e3, d3, b3, a3, h4, g4, f4, d4, b4, a4
+Please respond with your move in SAN format. Answer:
+Analyze this chess position and suggest the best move.
+Current position (FEN): 1nbqkbnr/2p1p2p/r7/1p1p1pN1/p1NP1P2/2P1P1P1/PP5P/R1BQKB1R b KQk - 0 12
+Legal moves: Nh6, Nf6, Bg7, Bh6, Kd7, Qd7, Qd6, Bd7, Bb7, Be6, Nd7, Nc6, Ra8, Ra7, Rh6, Rg6, Rf6, Re6, Rd6, Rc6, Rb6, Ra5, dxc4, bxc4, h6, e6, c6, b4, a3, h5, e5, c5
+Please respond with your move in SAN format. Answer:
+Prepared dataset
+Prepare Training...
+Training...
+  0%|                                                                                                                                                                                                                                                                                                                                                  | 0/3 [00:00<?, ?it/s]Traceback (most recent call last):
+  File "/Users/chloe/Desktop/deepchess/chess_gym.py", line 323, in <module>
+    trainer.train()
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/trainer.py", line 2171, in train
+    return inner_training_loop(
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/trainer.py", line 2531, in _inner_training_loop
+    tr_loss_step = self.training_step(model, inputs, num_items_in_batch)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/trainer.py", line 3675, in training_step
+    loss = self.compute_loss(model, inputs, num_items_in_batch=num_items_in_batch)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/trl/trainer/grpo_trainer.py", line 321, in compute_loss
+    prompt_completion_ids = unwrapped_model.generate(**prompt_inputs, generation_config=self.generation_config)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/peft/peft_model.py", line 1838, in generate
+    outputs = self.base_model.generate(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/generation/utils.py", line 2255, in generate
+    result = self._sample(
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/generation/utils.py", line 3257, in _sample
+    outputs = model_forward(**model_inputs, return_dict=True)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 816, in forward
+    outputs = self.model(
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 574, in forward
+    layer_outputs = decoder_layer(
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 259, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 161, in forward
+    query_states = self.q_proj(hidden_states).view(hidden_shape).transpose(1, 2)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/peft/tuners/lora/layer.py", line 621, in forward
+    result = result + lora_B(lora_A(dropout(x))) * scaling
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/modules/dropout.py", line 70, in forward
+    return F.dropout(input, self.p, self.training, self.inplace)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/torch/nn/functional.py", line 1425, in dropout
+    _VF.dropout_(input, p, training) if inplace else _VF.dropout(input, p, training)
+KeyboardInterrupt

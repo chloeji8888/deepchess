@@ -1,0 +1,18 @@
+Iteration 1 of 100
+Traceback (most recent call last):
+  File "/Users/chloe/Desktop/deepchess/chess_gym.py", line 201, in <module>
+  File "/Users/chloe/Desktop/deepchess/chess_gym.py", line 201, in <listcomp>
+  File "/Users/chloe/Desktop/deepchess/chess_gym.py", line 178, in generate_random_prompt
+  File "/Users/chloe/Desktop/deepchess/chess_gym.py", line 19, in __init__
+    super().__init__()
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/chess/engine.py", line 3052, in popen_uci
+    return cls.popen(UciProtocol, command, timeout=timeout, debug=debug, setpgrp=setpgrp, **popen_args)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/chess/engine.py", line 3044, in popen
+    return run_in_background(background, name=f"{cls.__name__} (command={command!r})", debug=debug)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/site-packages/chess/engine.py", line 77, in run_in_background
+    return future.result()
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/concurrent/futures/_base.py", line 453, in result
+    self._condition.wait(timeout)
+  File "/Users/chloe/miniconda3/envs/deepchess/lib/python3.10/threading.py", line 320, in wait
+    waiter.acquire()
+KeyboardInterrupt

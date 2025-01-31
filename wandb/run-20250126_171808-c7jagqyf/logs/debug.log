@@ -1,0 +1,22 @@
+2025-01-26 17:18:08,782 INFO    MainThread:26354 [wandb_setup.py:_flush():68] Current SDK version is 0.19.4
+2025-01-26 17:18:08,782 INFO    MainThread:26354 [wandb_setup.py:_flush():68] Configure stats pid to 26354
+2025-01-26 17:18:08,782 INFO    MainThread:26354 [wandb_setup.py:_flush():68] Loading settings from /Users/chloe/.config/wandb/settings
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_setup.py:_flush():68] Loading settings from /Users/chloe/Desktop/deepchess/wandb/settings
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_init.py:setup_run_log_directory():624] Logging user logs to /Users/chloe/Desktop/deepchess/wandb/run-20250126_171808-c7jagqyf/logs/debug.log
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_init.py:setup_run_log_directory():625] Logging internal logs to /Users/chloe/Desktop/deepchess/wandb/run-20250126_171808-c7jagqyf/logs/debug-internal.log
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_init.py:init():743] calling init triggers
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_init.py:init():748] wandb.init called with sweep_config: {}
+config: {'model': 'Qwen/Qwen2-0.5B-Instruct', 'learning_rate': 1e-05, 'num_iterations': 100, 'num_samples': 10}
+2025-01-26 17:18:08,783 INFO    MainThread:26354 [wandb_init.py:init():776] starting backend
+2025-01-26 17:18:09,012 INFO    MainThread:26354 [wandb_init.py:init():780] sending inform_init request
+2025-01-26 17:18:09,054 INFO    MainThread:26354 [backend.py:_multiprocessing_setup():97] multiprocessing start_methods=spawn,fork,forkserver, using: spawn
+2025-01-26 17:18:09,055 INFO    MainThread:26354 [wandb_init.py:init():795] backend started and connected
+2025-01-26 17:18:09,058 INFO    MainThread:26354 [wandb_init.py:init():888] updated telemetry
+2025-01-26 17:18:09,058 INFO    MainThread:26354 [wandb_init.py:init():915] communicating run to backend with 90.0 second timeout
+2025-01-26 17:18:09,349 INFO    MainThread:26354 [wandb_init.py:init():967] starting run threads in backend
+2025-01-26 17:18:09,429 INFO    MainThread:26354 [wandb_run.py:_console_start():2409] atexit reg
+2025-01-26 17:18:09,429 INFO    MainThread:26354 [wandb_run.py:_redirect():2259] redirect: wrap_raw
+2025-01-26 17:18:09,429 INFO    MainThread:26354 [wandb_run.py:_redirect():2324] Wrapping output streams.
+2025-01-26 17:18:09,429 INFO    MainThread:26354 [wandb_run.py:_redirect():2349] Redirects installed.
+2025-01-26 17:18:09,431 INFO    MainThread:26354 [wandb_init.py:init():1009] run started, returning control to user process
