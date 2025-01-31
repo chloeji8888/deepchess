@@ -26,5 +26,6 @@ pip install wandb
 pip install datasets
 pip install accelerate
 pip install numpy
+pip install vllm
 
 echo "All dependencies installed successfully!" 
