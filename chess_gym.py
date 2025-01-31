@@ -234,7 +234,7 @@ if accelerator.is_main_process:
 
 def evaluate_model(model, tokenizer, num_samples=5):
     """Evaluate model on fixed set of positions"""
-    test_prompts = [generate_random_prompt(STOCKFISH_PATH) for _ in range(num_samples)]
+    test_prompts = [generate_random_prompt() for _ in range(num_samples)]
     results = []
     
     for prompt in test_prompts:
@@ -327,16 +327,17 @@ for i in range(num_iterations):
         peft_config=peft_config,
         processing_class=tokenizer,
     )
+    if (i + 1) % 5 == 0:
+        print(f"\nRunning evaluation: Iter {i+1}")
+        evaluate_model(trainer.model, tokenizer)
     print("[DEBUG] Trainer created successfully")
+    
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
     
     # Run evaluation every 5 iters
     trainer.save_model(f"chess-grpo-epoch-{i}")
-    if (i + 1) % 5 == 0:
-        print(f"\nRunning evaluation after iter {i+1}")
-        evaluate_model(trainer.model, tokenizer)
 
 # Finish WandB logging
 if accelerator.is_main_process:
