@@ -1,0 +1,7 @@
+{"time":"2025-01-31T02:49:17.527368833Z","level":"INFO","msg":"stream: starting","core version":"0.19.5","symlink path":"/root/deepchess/wandb/run-20250131_024917-qnn18dhm/logs/debug-core.log"}
+{"time":"2025-01-31T02:49:17.646629461Z","level":"INFO","msg":"created new stream","id":"qnn18dhm"}
+{"time":"2025-01-31T02:49:17.646702011Z","level":"INFO","msg":"stream: started","id":"qnn18dhm"}
+{"time":"2025-01-31T02:49:17.646840847Z","level":"INFO","msg":"writer: Do: started","stream_id":"qnn18dhm"}
+{"time":"2025-01-31T02:49:17.646933691Z","level":"INFO","msg":"handler: started","stream_id":"qnn18dhm"}
+{"time":"2025-01-31T02:49:17.647108649Z","level":"INFO","msg":"sender: started","stream_id":"qnn18dhm"}
+{"time":"2025-01-31T02:49:17.923568624Z","level":"INFO","msg":"Starting system monitor"}
