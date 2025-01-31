@@ -10,7 +10,9 @@ from peft import LoraConfig
 import re
 import wandb
 from datasets import Dataset
-from accelerate.utils import is_main_process
+from accelerate import Accelerator
+
+accelerator = Accelerator()
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -163,7 +165,7 @@ def reward_function(prompts, completions):
     finally:
         local_env.close()
         
-    if wandb.run is not None and is_main_process():  # Add is_main_process check
+    if wandb.run is not None and accelerator.is_main_process():  # Add is_main_process check
         wandb.log({
             "samples": wandb.Table(
                 data=[[s["prompt"], s["completion"], s["move"], s["reward"]] 
@@ -217,7 +219,7 @@ num_iterations = 100
 num_samples = 100
 
 
-if is_main_process():
+if accelerator.is_main_process():
     print("Initializing WandB...")
     wandb.login()  # This will use API key from environment variable if set
     wandb.init(
@@ -282,7 +284,7 @@ def evaluate_model(model, tokenizer, num_samples=5):
     illegal_rate = sum(1 for r in results if not r['valid'])/len(results)
     
     # Log to WandB
-    if wandb.run is not None and is_main_process(): 
+    if wandb.run is not None and accelerator.is_main_process(): 
         wandb.log({
             "eval/accuracy": accuracy,
             "eval/avg_score_delta": avg_score_delta,
@@ -337,5 +339,5 @@ for i in range(num_iterations):
         evaluate_model(trainer.model, tokenizer)
 
 # Finish WandB logging
-if is_main_process():
+if accelerator.is_main_process():
     wandb.finish()
