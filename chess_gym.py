@@ -182,13 +182,15 @@ model = AutoModelForCausalLM.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
-grpo_config = GRPOConfig(
+grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     output_dir="chess-grpo",
     learning_rate=1e-5,
     logging_steps=10,
     gradient_accumulation_steps=8,
-    max_completion_length=512,
+    max_completion_length=256,
     dataloader_pin_memory=True,
+    report_to="wandb",
+    disable_tqdm=False,
 )
 
 peft_config = LoraConfig(
