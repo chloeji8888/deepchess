@@ -21,7 +21,7 @@ class ChessEnv(gym.Env):
         super().__init__()
         self.board = chess.Board()
         self.action_space = spaces.Discrete(4677)  # Max number of legal moves in chess
-        self.observation_space = spaces.Text(max_length=128)
+        self.observation_space = spaces.Text(max_length=512)
         self.stockfish_path = stockfish_path
         self.skill_level = skill_level
         self.agent_color = agent_color
@@ -187,12 +187,15 @@ model = AutoModelForCausalLM.from_pretrained(model_id)
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
+
+LLM_MAX_LENGTH = 512
+
 grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     output_dir="chess-grpo",
     learning_rate=1e-5,
     logging_steps=10,
     gradient_accumulation_steps=8,
-    max_completion_length=256,
+    max_completion_length=LLM_MAX_LENGTH,
     dataloader_pin_memory=True,
     report_to="wandb",
     disable_tqdm=False,
@@ -244,7 +247,7 @@ def evaluate_model(model, tokenizer, num_samples=5):
             env.configure_from_prompt(prompt)
             # Generate model completion
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-            outputs = model.generate(**inputs, max_length=128)
+            outputs = model.generate(**inputs, max_new_tokens=LLM_MAX_LENGTH)
             completion = tokenizer.decode(outputs[0], skip_special_tokens=True)
             
             # Get model's move and reward
@@ -268,8 +271,8 @@ def evaluate_model(model, tokenizer, num_samples=5):
             })
         except Exception as e:
             results.append({
-                "prompt": prompt,
-                "completion": completion,
+                "prompt": "prompt",
+                "completion": "ERROR",
                 "model_move": "INVALID",
                 "best_move": "",
                 "score_delta": 0,
@@ -327,7 +330,7 @@ for i in range(num_iterations):
         peft_config=peft_config,
         processing_class=tokenizer,
     )
-    if (i + 1) % 5 == 0:
+    if i % 5 == 0:
         print(f"\nRunning evaluation: Iter {i+1}")
         evaluate_model(trainer.model, tokenizer)
     print("[DEBUG] Trainer created successfully")
