@@ -93,17 +93,27 @@ def train(rank, world_size):
         print(f"Epoch {epoch} of {10}")
         for batch_idx, (data, target) in tqdm(enumerate(train_loader)):
             data, target = data.to(rank), target.to(rank)
+            print("data and target to device")
             optimizer.zero_grad()
+            print("optimizer zero grad")
             output = model(data)
+            print("output computed")
             loss = criterion(output, target)
+            print("loss computed")
             loss.backward()
+            print("loss backward")
             optimizer.step()
+            print("optimizer step")
             
             # Calculate accuracy
             pred = output.argmax(dim=1, keepdim=True)
+            print("pred computed")
             correct += pred.eq(target.view_as(pred)).sum().item()
+            print("correct computed")
             total += target.size(0)
+            print("total computed")
             running_loss += loss.item()
+            print("running loss computed")
 
             if batch_idx % 100 == 0 and rank == 0:
                 print(f'Epoch: {epoch}, Batch: {batch_idx}, Loss: {loss.item():.4f}')
