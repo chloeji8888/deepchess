@@ -27,6 +27,5 @@ pip install datasets
 pip install accelerate
 pip install numpy
 
-echo "All dependencies installed successfully!" 
-
+echo "All dependencies installed successfully!"
 echo "config wandb with: export WANDB_API_KEY=<your_api_key>"

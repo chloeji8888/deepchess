@@ -181,13 +181,13 @@ def reward_function(prompts, completions):
                 
             except Exception as e:
                 print(e)
-                rewards.append(-0.5)  # Penalize invalid moves
+                rewards.append(-100)  # Penalize invalid moves
                 
                 samples_to_log.append({
                     "prompt": prompt,
                     "completion": completion,
                     "move": "INVALID",
-                    "reward": -0.5
+                    "reward": -100
                 })
                 
     finally:
@@ -202,8 +202,6 @@ def reward_function(prompts, completions):
             )
         })
     
-    return rewards
-        
     return rewards
 
 # Initialize environment and model - Fix path here
@@ -364,11 +362,10 @@ for i in range(num_iterations):
         print(f"\nRunning evaluation: Iter {i+1}")
         evaluate_model(trainer.model, tokenizer, num_test_samples)
     print("[DEBUG] Trainer created successfully")
-    
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
-    
+
     # Run evaluation every 5 iters
     trainer.save_model(f"chess-grpo-epoch-{i}")
 
