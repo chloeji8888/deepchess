@@ -18,6 +18,7 @@ echo "Installing Python dependencies..."
 pip install --upgrade pip
 pip install torch
 pip install gymnasium
+pip install torchvision 
 pip install python-chess
 pip install transformers
 pip install trl
