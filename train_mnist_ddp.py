@@ -64,7 +64,15 @@ def train(rank, world_size):
         transforms.Normalize((0.1307,), (0.3081,))
     ])
     
-    dataset = datasets.MNIST('data', train=True, download=True, transform=transform)
+    # Only download on rank 0 first
+    if rank == 0:
+        datasets.MNIST('data', train=True, download=True, transform=transform)
+    
+    # Wait for rank 0 to finish downloading
+    dist.barrier()
+    
+    # Now all ranks can load the dataset
+    dataset = datasets.MNIST('data', train=True, download=False, transform=transform)
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
     train_loader = DataLoader(dataset, batch_size=64, sampler=sampler)
     
