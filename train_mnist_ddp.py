@@ -37,6 +37,7 @@ class ConvNet(nn.Module):
 def setup_ddp(rank, world_size):
     os.environ['MASTER_ADDR'] = 'localhost'
     os.environ['MASTER_PORT'] = '12355'
+    torch.cuda.set_device(rank)
     dist.init_process_group("nccl", rank=rank, world_size=world_size)
 
 def cleanup():
@@ -80,7 +81,6 @@ def train(rank, world_size):
     train_loader = DataLoader(dataset, batch_size=64, sampler=sampler)
     print("train loader initialized")
     # Model setup
-    torch.cuda.set_device(rank)
     model = ConvNet().to(rank)
     model = DDP(model, device_ids=[rank])
     print("model initialized")
