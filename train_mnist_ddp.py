@@ -44,6 +44,7 @@ def cleanup():
 
 def train(rank, world_size):
     # DDP setup
+    print(f"Setting up DDP with rank {rank} and world size {world_size}")
     setup_ddp(rank, world_size)
     
     # Initialize wandb only on main process
@@ -64,6 +65,7 @@ def train(rank, world_size):
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
     ])
+    print("initializing dataset")
     
     # Only download on rank 0 first
     if rank == 0:
@@ -71,20 +73,20 @@ def train(rank, world_size):
     
     # Wait for rank 0 to finish downloading
     dist.barrier()
-    
+    print("dataset initialized")
     # Now all ranks can load the dataset
     dataset = datasets.MNIST('data', train=True, download=False, transform=transform)
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
     train_loader = DataLoader(dataset, batch_size=64, sampler=sampler)
-    
+    print("train loader initialized")
     # Model setup
     torch.cuda.set_device(rank)
     model = ConvNet().to(rank)
     model = DDP(model, device_ids=[rank])
-    
+    print("model initialized")
     optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
     criterion = nn.CrossEntropyLoss()
-
+    print("optimizer initialized")
     # Training loop
     model.train()
     print("Starting training")
