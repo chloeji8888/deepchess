@@ -8,6 +8,7 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
 import os
 import wandb
+from tqdm import tqdm
 
 class ConvNet(nn.Module):
     def __init__(self):
@@ -86,13 +87,14 @@ def train(rank, world_size):
 
     # Training loop
     model.train()
+    print("Starting training")
     for epoch in range(10):
         sampler.set_epoch(epoch)  # Important for proper shuffling
         running_loss = 0.0
         correct = 0
         total = 0
-        
-        for batch_idx, (data, target) in enumerate(train_loader):
+        print(f"Epoch {epoch} of {10}")
+        for batch_idx, (data, target) in tqdm(enumerate(train_loader)):
             data, target = data.to(rank), target.to(rank)
             optimizer.zero_grad()
             output = model(data)
