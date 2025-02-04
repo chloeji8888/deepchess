@@ -37,20 +37,23 @@ class ConvNet(nn.Module):
 def setup_ddp(rank, world_size):
     os.environ['MASTER_ADDR'] = 'localhost'
     os.environ['MASTER_PORT'] = '12355'
-    torch.cuda.set_device(rank)
     dist.init_process_group("nccl", rank=rank, world_size=world_size)
 
 def cleanup():
     dist.destroy_process_group()
 
 def train(rank, world_size):
+    # Set CUDA device first
+    torch.cuda.set_device(rank)
+    
     # DDP setup
-    print(f"Setting up DDP with rank {rank} and world size {world_size}")
+    if rank == 0:
+        print(f"Setting up DDP with world size {world_size}")
     setup_ddp(rank, world_size)
     
     # Initialize wandb only on main process
     if rank == 0:
-        wandb.login(key="f8e50d49b646c2e880b5f0ee2ebcc13cefe20d86")  # Replace with your actual API key
+        wandb.login(key="f8e50d49b646c2e880b5f0ee2ebcc13cefe20d86")
         wandb.init(
             project="mnist-ddp",
             config={
@@ -61,57 +64,54 @@ def train(rank, world_size):
             }
         )
 
-    # Data loading
     transform = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
     ])
-    print("initializing dataset")
     
-    # Now all ranks can load the dataset
+    # Load dataset
     dataset = datasets.MNIST('data', train=True, download=False, transform=transform)
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
-    train_loader = DataLoader(dataset, batch_size=64, sampler=sampler)
-    print("train loader initialized")
+    train_loader = DataLoader(dataset, batch_size=64, sampler=sampler, drop_last=True)
+    
+    # Create model and wrap with DDP
     model = ConvNet().to(rank)
-    print("model initialized")
     model = DDP(model, device_ids=[rank])
-    print("model wrapped")
     optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
     criterion = nn.CrossEntropyLoss()
-    print("optimizer initialized")
+
+    # Synchronize all processes before starting training
+    dist.barrier()
+    if rank == 0:
+        print("Starting training")
+
     # Training loop
     model.train()
-    print("Starting training")
     for epoch in range(10):
-        sampler.set_epoch(epoch)  # Important for proper shuffling
+        sampler.set_epoch(epoch)
         running_loss = 0.0
         correct = 0
         total = 0
-        print(f"Epoch {epoch} of {10}")
-        for batch_idx, (data, target) in tqdm(enumerate(train_loader)):
+        
+        # Only show progress bar on rank 0
+        if rank == 0:
+            iterator = tqdm(enumerate(train_loader), total=len(train_loader))
+        else:
+            iterator = enumerate(train_loader)
+
+        for batch_idx, (data, target) in iterator:
             data, target = data.to(rank), target.to(rank)
-            print("data and target to device")
             optimizer.zero_grad()
-            print("optimizer zero grad")
             output = model(data)
-            print("output computed")
             loss = criterion(output, target)
-            print("loss computed")
             loss.backward()
-            print("loss backward")
             optimizer.step()
-            print("optimizer step")
             
             # Calculate accuracy
             pred = output.argmax(dim=1, keepdim=True)
-            print("pred computed")
             correct += pred.eq(target.view_as(pred)).sum().item()
-            print("correct computed")
             total += target.size(0)
-            print("total computed")
             running_loss += loss.item()
-            print("running loss computed")
 
             if batch_idx % 100 == 0 and rank == 0:
                 print(f'Epoch: {epoch}, Batch: {batch_idx}, Loss: {loss.item():.4f}')
@@ -126,6 +126,9 @@ def train(rank, world_size):
                 "accuracy": epoch_acc
             })
             print(f'Epoch {epoch}: Loss = {epoch_loss:.4f}, Accuracy = {epoch_acc:.2f}%')
+
+        # Synchronize at the end of each epoch
+        dist.barrier()
 
     cleanup()
 
