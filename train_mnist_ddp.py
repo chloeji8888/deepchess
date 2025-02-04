@@ -37,7 +37,6 @@ class ConvNet(nn.Module):
 def setup_ddp(rank, world_size):
     os.environ['MASTER_ADDR'] = 'localhost'
     os.environ['MASTER_PORT'] = '12355'
-    torch.cuda.set_device(rank)
     dist.init_process_group("nccl", rank=rank, world_size=world_size)
 
 def cleanup():
@@ -68,19 +67,13 @@ def train(rank, world_size):
     ])
     print("initializing dataset")
     
-    # Only download on rank 0 first
-    if rank == 0:
-        datasets.MNIST('data', train=True, download=True, transform=transform)
-    
-    # Wait for rank 0 to finish downloading
-    dist.barrier()
-    print("dataset initialized")
     # Now all ranks can load the dataset
     dataset = datasets.MNIST('data', train=True, download=False, transform=transform)
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
     train_loader = DataLoader(dataset, batch_size=64, sampler=sampler)
     print("train loader initialized")
     # Model setup
+    torch.cuda.set_device(rank)
     model = ConvNet().to(rank)
     model = DDP(model, device_ids=[rank])
     print("model initialized")
