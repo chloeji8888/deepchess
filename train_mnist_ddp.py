@@ -8,6 +8,8 @@ from torch.nn.parallel import DistributedDataParallel as DDP
 from torch.utils.data.distributed import DistributedSampler
 import os
 import wandb
+import torch.multiprocessing as mp
+mp.set_start_method('spawn', force=True)
 from tqdm import tqdm
 
 class ConvNet(nn.Module):
@@ -136,7 +138,6 @@ if __name__ == "__main__":
     world_size = torch.cuda.device_count()
     assert world_size >= 2, f"Requires at least 2 GPUs to run, but got {world_size}"
     
-    import torch.multiprocessing as mp
     mp.spawn(
         train,
         args=(world_size,),
