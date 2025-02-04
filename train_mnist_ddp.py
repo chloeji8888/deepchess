@@ -74,9 +74,11 @@ def train(rank, world_size):
     print("train loader initialized")
     # Model setup
     torch.cuda.set_device(rank)
+    print("cuda set device")
     model = ConvNet().to(rank)
-    model = DDP(model, device_ids=[rank])
     print("model initialized")
+    model = DDP(model, device_ids=[rank])
+    print("model wrapped")
     optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
     criterion = nn.CrossEntropyLoss()
     print("optimizer initialized")
