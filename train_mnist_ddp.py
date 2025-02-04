@@ -47,6 +47,7 @@ def train(rank, world_size):
     
     # Initialize wandb only on main process
     if rank == 0:
+        wandb.login(key="f8e50d49b646c2e880b5f0ee2ebcc13cefe20d86")  # Replace with your actual API key
         wandb.init(
             project="mnist-ddp",
             config={
