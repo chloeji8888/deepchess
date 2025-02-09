@@ -13,36 +13,25 @@ from datasets import Dataset
 from accelerate import Accelerator
 from multiprocessing import Pool, cpu_count
 
+
+
 accelerator = Accelerator()
 
-def generate_prompts_batch(batch_size):
-    """Generate a batch of prompts"""
-    prompts = []
-    local_env = ChessEnv()
-    for _ in range(batch_size):
-        prompt, _ = local_env.reset(random_moves=True)
-        prompts.append(prompt)
-    local_env.close()
-    return prompts
-
-def parallel_generate_prompts(total_samples, batch_size=100):
-    """Generate prompts in parallel using multiple processes"""
-    num_processes = min(cpu_count(), 16)  # Limit to 8 processes max
-    samples_per_process = batch_size
-    num_batches = (total_samples + samples_per_process - 1) // samples_per_process
-    
-    print(f"Generating {total_samples} prompts using {num_processes} processes...")
-    with Pool(processes=num_processes) as pool:
-        results = pool.map(generate_prompts_batch, 
-                         [samples_per_process] * num_batches)
-    
-    # Flatten results and trim to desired length
-    all_prompts = [prompt for batch in results for prompt in batch]
-    return all_prompts[:total_samples]
-
-
-
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
+
+def load_positions(file_path):
+    """Load chess positions from a text file containing FEN strings"""
+    try:
+        with open(file_path, 'r') as f:
+            positions = [line.strip() for line in f if line.strip()]
+        return positions
+    except FileNotFoundError:
+        print(f"Warning: Position file {file_path} not found")
+        return []
+
+# Load sampled positions
+SAMPLED_POSITIONS = load_positions("sampled_positions.txt")
+
 
 class ChessEnv(gym.Env):
     def __init__(self, skill_level=20, agent_color=chess.WHITE, stockfish_path="/usr/games/stockfish"):
@@ -101,10 +90,15 @@ class ChessEnv(gym.Env):
             self.board.push(move)
             
     def _get_prompt(self):
-        return f"""Analyze this chess position and suggest the best move.
+        return f"""
+A conversation between User and Assistant. The user asks a question, and the Assistant solves it.
+The assistant first thinks about the reasoning process in the mind and then provides the user
+with the answer. The reasoning process and answer are enclosed within <think> </think> and
+<answer> </answer> tags, respectively, i.e., <think> reasoning process here </think>
+<answer> answer here </answer>. User: Analyze this chess position and suggest the best move.
 Current position (FEN): {self.board.fen()}
 Legal moves: {', '.join([self.board.san(m) for m in self.board.legal_moves])}
-Please respond with your move in SAN format. Answer:"""
+Please respond with your move in SAN format. Assistant:"""
 
     def configure_from_prompt(self, prompt):
         fen = prompt.split("Current position (FEN):")[1].split("Legal moves:")[0].strip()
@@ -181,13 +175,13 @@ def reward_function(prompts, completions):
                 
             except Exception as e:
                 print(e)
-                rewards.append(-100)  # Penalize invalid moves
+                rewards.append(-10)  # Penalize invalid moves
                 
                 samples_to_log.append({
                     "prompt": prompt,
                     "completion": completion,
                     "move": "INVALID",
-                    "reward": -100
+                    "reward": -10
                 })
                 
     finally:
@@ -208,8 +202,8 @@ def reward_function(prompts, completions):
 env = ChessEnv(
     agent_color=chess.WHITE  # or chess.BLACK
 )
-model_id = "Qwen/Qwen2-0.5B-Instruct" #  "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" #  
-model = AutoModelForCausalLM.from_pretrained(model_id) #attn_implementation="flash_attention_2")
+model_id = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" #  "Qwen/Qwen2-0.5B-Instruct" # 
+model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="flash_attention_2")
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
@@ -245,7 +239,7 @@ def generate_random_prompt():
 
 # Pre-generate all prompts before training
 num_iterations = 10
-num_samples = 100000
+num_samples = -1
 num_test_samples = 5
 
 
@@ -262,12 +256,20 @@ if accelerator.is_main_process:
             "num_test_samples": num_test_samples,
         }
     )
+    
+def generate_prompts_from_positions(positions):
+    prompts = []
+    for fen in positions:
+        env = ChessEnv()
+        env.board.set_fen(fen)
+        prompts.append(env._get_prompt())
+    return prompts
 
 def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
     model = model.to(accelerator.device)
     print("evaluating on device:", model.device)
-    test_prompts = [generate_random_prompt() for _ in range(num_test_samples)]
+    test_prompts = generate_prompts_from_positions(SAMPLED_POSITIONS[:num_test_samples])
     results = []
     
     for prompt in test_prompts:
@@ -346,7 +348,7 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
     print(f"Illegal Moves: {illegal_rate:.2%}\n")
 
 
-prompts = parallel_generate_prompts(num_samples)
+prompts = generate_prompts_from_positions(SAMPLED_POSITIONS[:num_samples])
 dataset = Dataset.from_dict({"prompt": prompts})
 print("[DEBUG] Dataset prepared with prompts:", len(prompts))
 
