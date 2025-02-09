@@ -209,7 +209,8 @@ model_id = "Qwen/Qwen2.5-1.5B-Instruct" #
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     attn_implementation="flash_attention_2",
-    torch_dtype=torch.float16  # or torch.float16 depending on your GPU
+    torch_dtype=torch.float16,
+    device_map="auto"  # This ensures proper GPU placement
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
