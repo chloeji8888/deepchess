@@ -203,7 +203,7 @@ env = ChessEnv(
     agent_color=chess.WHITE  # or chess.BLACK
 )
 model_id = "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" #  "Qwen/Qwen2-0.5B-Instruct" # 
-model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="flash_attention_2")
+model = AutoModelForCausalLM.from_pretrained(model_id) #, attn_implementation="flash_attention_2")
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
@@ -267,7 +267,7 @@ def generate_prompts_from_positions(positions):
 
 def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
-    model = model.to(accelerator.device)
+    model = model.to(accelerator.device).eval().half()
     print("evaluating on device:", model.device)
     test_prompts = generate_prompts_from_positions(SAMPLED_POSITIONS[:num_test_samples])
     results = []
@@ -279,6 +279,8 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
             env.configure_from_prompt(prompt)
             # Generate model completion
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+            # convert to half precision
+            inputs = {k: v.half() for k, v in inputs.items()}
             outputs = model.generate(**inputs, max_new_tokens=LLM_MAX_LENGTH)
             completion = tokenizer.decode(outputs[0], skip_special_tokens=True)
             
