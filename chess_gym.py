@@ -209,7 +209,7 @@ model_id = "Qwen/Qwen2.5-1.5B-Instruct" #
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     attn_implementation="flash_attention_2",
-    torch_dtype=torch.float16,
+    load_in_8bit=True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
@@ -231,7 +231,9 @@ grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
 peft_config = LoraConfig(
     r=16,
     lora_alpha=32,
+    target_modules=["q_proj", "v_proj"],
     lora_dropout=0.05,
+    bias="none",
     task_type="CAUSAL_LM",
 )
 
@@ -274,7 +276,7 @@ def generate_prompts_from_positions(positions):
 
 def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
-    model = model.to(accelerator.device).eval().half()
+    model = model.to(accelerator.device).eval()
     print("evaluating on device:", model.device)
     test_prompts = generate_prompts_from_positions(SAMPLED_POSITIONS[:num_test_samples])
     results = []
