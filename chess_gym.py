@@ -279,6 +279,8 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
             outputs = model.generate(**inputs, max_new_tokens=LLM_MAX_LENGTH)
             completion = tokenizer.decode(outputs[0], skip_special_tokens=True)
             
+            print("completion:", completion)
+            
             # Get model's move and reward
             move = re.search(r'([KQRNB]?[a-h]?[1-8]?x?[a-h][1-8](=[QRNB])?|O-O|O-O-O)[+#]?', completion).group(0)
             obs, reward, terminated, _, _ = env.step(move)
@@ -359,9 +361,11 @@ for i in range(num_iterations):
         peft_config=peft_config,
         processing_class=tokenizer,
     )
-    if i % 5 == 0:
+    if i % 5 == 0 and accelerator.is_main_process:
         print(f"\nRunning evaluation: Iter {i+1}")
         evaluate_model(trainer.model, tokenizer, num_test_samples)
+    # Wait for all processes to finish evaluation
+    accelerator.wait_for_everyone()
     print("[DEBUG] Trainer created successfully")
     
     print("[DEBUG] Starting training...")
