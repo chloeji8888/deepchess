@@ -210,7 +210,6 @@ model = AutoModelForCausalLM.from_pretrained(
     model_id,
     attn_implementation="flash_attention_2",
     torch_dtype=torch.float16,
-    device_map="auto"  # This ensures proper GPU placement
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
