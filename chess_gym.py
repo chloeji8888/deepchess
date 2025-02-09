@@ -209,7 +209,7 @@ env = ChessEnv(
     agent_color=chess.WHITE  # or chess.BLACK
 )
 model_id = "Qwen/Qwen2-0.5B-Instruct" #  "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" #  
-model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="flash_attention_2")
+model = AutoModelForCausalLM.from_pretrained(model_id) #attn_implementation="flash_attention_2")
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
