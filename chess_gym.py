@@ -209,7 +209,7 @@ env = ChessEnv(
     agent_color=chess.WHITE  # or chess.BLACK
 )
 model_id = "Qwen/Qwen2-0.5B-Instruct" #  "deepseek-ai/DeepSeek-R1-Distill-Qwen-1.5B" #  
-model = AutoModelForCausalLM.from_pretrained(model_id)
+model = AutoModelForCausalLM.from_pretrained(model_id, attn_implementation="flash_attention_2")
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 # GRPO Configuration
@@ -232,9 +232,6 @@ peft_config = LoraConfig(
     lora_alpha=32,
     lora_dropout=0.05,
     task_type="CAUSAL_LM",
-    target_modules=["c_attn", "c_proj", "w1", "w2"],  # Target attention and MLP layers
-    bias="none",  # Explicitly disable bias training
-    inference_mode=False
 )
 
 # Move dataset generation outside the training loop
@@ -365,12 +362,17 @@ for i in range(num_iterations):
         print(f"\nRunning evaluation: Iter {i+1}")
         evaluate_model(trainer.model, tokenizer, num_test_samples)
     print("[DEBUG] Trainer created successfully")
+    
     print("[DEBUG] Starting training...")
     trainer.train()
     print("[DEBUG] Training complete")
 
     # Run evaluation every 5 iters
     trainer.save_model(f"chess-grpo-epoch-{i}")
+    trainer.save_model("chess-grpo")
+    trainer.push_to_hub(dataset_name="chess-grpo")
+
+    trainer.generate_completions()
 
 # Finish WandB logging
 if accelerator.is_main_process:

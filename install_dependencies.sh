@@ -27,6 +27,7 @@ pip install wandb
 pip install datasets
 pip install accelerate
 pip install numpy
+pip install -U flash-attn
 apt-get install -y stockfish
 
 echo "All dependencies installed successfully!"
