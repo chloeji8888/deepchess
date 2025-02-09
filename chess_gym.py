@@ -362,6 +362,7 @@ trainer = GRPOTrainer(
     processing_class=tokenizer,
 )
 if accelerator.is_main_process:
+    print("Evaluating model...")
     evaluate_model(trainer.model, tokenizer, num_test_samples)
 # Wait for all processes to finish evaluation
 accelerator.wait_for_everyone()
