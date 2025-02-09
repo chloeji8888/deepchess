@@ -279,8 +279,6 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
             env.configure_from_prompt(prompt)
             # Generate model completion
             inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-            # convert to half precision
-            inputs = {k: v.half() for k, v in inputs.items()}
             outputs = model.generate(**inputs, max_new_tokens=LLM_MAX_LENGTH)
             completion = tokenizer.decode(outputs[0], skip_special_tokens=True)
             
