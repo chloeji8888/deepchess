@@ -265,6 +265,7 @@ if accelerator.is_main_process:
 
 def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
+    print("evaluating on device:", model.device)
     test_prompts = [generate_random_prompt() for _ in range(num_test_samples)]
     results = []
     
