@@ -27,7 +27,7 @@ def generate_prompts_batch(batch_size):
 
 def parallel_generate_prompts(total_samples, batch_size=100):
     """Generate prompts in parallel using multiple processes"""
-    num_processes = min(cpu_count(), 8)  # Limit to 8 processes max
+    num_processes = min(cpu_count(), 16)  # Limit to 8 processes max
     samples_per_process = batch_size
     num_batches = (total_samples + samples_per_process - 1) // samples_per_process
     
@@ -245,7 +245,7 @@ def generate_random_prompt():
 
 # Pre-generate all prompts before training
 num_iterations = 10
-num_samples = 500
+num_samples = 100000
 num_test_samples = 5
 
 
@@ -345,42 +345,35 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
     print(f"Avg Reward: {avg_reward:.2f}")
     print(f"Illegal Moves: {illegal_rate:.2%}\n")
 
-for i in range(num_iterations):
-    print("\n" + "="*50)
-    print(f"[DEBUG] Starting Iteration {i+1} of {num_iterations}")
-    print("="*50 + "\n")
-    
-    prompts = parallel_generate_prompts(num_samples)
-    dataset = Dataset.from_dict({"prompt": prompts})
-    print("[DEBUG] Dataset prepared with prompts:", len(prompts))
-    
-    print("[DEBUG] About to create trainer...")
-    trainer = GRPOTrainer(
-        model=model,
-        args=grpo_config,
-        reward_funcs=reward_function,
-        train_dataset=dataset,
-        peft_config=peft_config,
-        processing_class=tokenizer,
-    )
-    if i % 5 == 0 and accelerator.is_main_process:
-        print(f"\nRunning evaluation: Iter {i+1}")
-        evaluate_model(trainer.model, tokenizer, num_test_samples)
-    # Wait for all processes to finish evaluation
-    accelerator.wait_for_everyone()
-    print("[DEBUG] Trainer created successfully")
-    
-    print("[DEBUG] Starting training...")
-    trainer.train()
-    print("[DEBUG] Training complete")
 
-    # Run evaluation every 5 iters
-    trainer.save_model(f"chess-grpo-epoch-{i}")
-    trainer.save_model("chess-grpo")
-    trainer.push_to_hub(dataset_name="chess-grpo")
+prompts = parallel_generate_prompts(num_samples)
+dataset = Dataset.from_dict({"prompt": prompts})
+print("[DEBUG] Dataset prepared with prompts:", len(prompts))
 
-    trainer.generate_completions()
+print("[DEBUG] About to create trainer...")
+trainer = GRPOTrainer(
+    model=model,
+    args=grpo_config,
+    reward_funcs=reward_function,
+    train_dataset=dataset,
+    peft_config=peft_config,
+    processing_class=tokenizer,
+)
+if accelerator.is_main_process:
+    evaluate_model(trainer.model, tokenizer, num_test_samples)
+# Wait for all processes to finish evaluation
+accelerator.wait_for_everyone()
+print("[DEBUG] Trainer created successfully")
 
-# Finish WandB logging
+print("[DEBUG] Starting training...")
+trainer.train()
+print("[DEBUG] Training complete")
+
+trainer.save_model("chess-grpo")
+trainer.push_to_hub(dataset_name="chess-grpo")
+trainer.generate_completions()
+if accelerator.is_main_process:
+    evaluate_model(trainer.model, tokenizer, num_test_samples)
+
 if accelerator.is_main_process:
     wandb.finish()
