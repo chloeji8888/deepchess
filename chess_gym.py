@@ -94,11 +94,14 @@ class ChessEnv(gym.Env):
 A conversation between User and Assistant. The user asks a question, and the Assistant solves it.
 The assistant first thinks about the reasoning process in the mind and then provides the user
 with the answer. The reasoning process and answer are enclosed within <think> </think> and
-<answer> </answer> tags, respectively, i.e., <think> reasoning process here </think>
-<answer> answer here </answer>. User: Analyze this chess position and suggest the best move.
+<answer> </answer> tags, respectively, i.e., 
+<think> reasoning process here </think>
+<answer> answer here </answer>.
+User: Analyze this chess position and suggest the best move.
 Current position (FEN): {self.board.fen()}
 Legal moves: {', '.join([self.board.san(m) for m in self.board.legal_moves])}
-Please respond with your move in SAN format. Assistant:"""
+Please think and respond with your move in SAN format. Assistant:
+"""
 
     def configure_from_prompt(self, prompt):
         fen = prompt.split("Current position (FEN):")[1].split("Legal moves:")[0].strip()
