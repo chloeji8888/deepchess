@@ -302,6 +302,7 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
                 "valid": True
             })
         except Exception as e:
+            print("error encountered in evaluation:", e)
             results.append({
                 "prompt": "prompt",
                 "completion": "ERROR",
