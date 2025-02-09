@@ -232,6 +232,9 @@ peft_config = LoraConfig(
     lora_alpha=32,
     lora_dropout=0.05,
     task_type="CAUSAL_LM",
+    target_modules=["c_attn", "c_proj", "w1", "w2"],  # Target attention and MLP layers
+    bias="none",  # Explicitly disable bias training
+    inference_mode=False
 )
 
 # Move dataset generation outside the training loop
