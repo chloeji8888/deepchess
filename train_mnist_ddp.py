@@ -9,7 +9,7 @@ from torch.utils.data.distributed import DistributedSampler
 import os
 import wandb
 import torch.multiprocessing as mp
-mp.set_start_method('spawn', force=True)
+
 from tqdm import tqdm
 
 class ConvNet(nn.Module):
@@ -72,7 +72,7 @@ def train(rank, world_size):
     ])
     
     # Load dataset
-    dataset = datasets.MNIST('data', train=True, download=False, transform=transform)
+    dataset = datasets.MNIST('data', train=True, download=True, transform=transform)
     sampler = DistributedSampler(dataset, num_replicas=world_size, rank=rank)
     train_loader = DataLoader(dataset, batch_size=64, sampler=sampler, drop_last=True)
     
