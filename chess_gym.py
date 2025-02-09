@@ -309,7 +309,7 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
         except Exception as e:
             print("error encountered in evaluation:", e)
             results.append({
-                "prompt": "prompt",
+                "prompt": prompt,
                 "completion": "ERROR",
                 "model_move": "INVALID",
                 "best_move": "",
@@ -334,7 +334,7 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
             "eval/examples": wandb.Table(
                 columns=["Position", "Model Move", "Best Move", "Score Δ", "Reward", "Raw Completion"],
                 data=[[
-                    r['prompt'].split('\n')[1].split(': ')[1] if r['valid'] else "Invalid",
+                    r['prompt'],
                     r['model_move'],
                     r['best_move'],
                     r['score_delta'],
