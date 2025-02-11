@@ -26,10 +26,12 @@ pip install peft
 pip install wandb
 pip install datasets
 pip install accelerate
+pip install -U bitsandbytes
 pip install numpy
 pip install -U flash-attn
 pip install kagglehub
 pip install pandas
+pip install vllm
 apt-get install -y stockfish
 
 echo "All dependencies installed successfully!"

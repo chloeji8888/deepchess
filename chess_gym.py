@@ -208,7 +208,7 @@ env = ChessEnv(
 model_id = "Qwen/Qwen2.5-1.5B-Instruct" # 
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
-    attn_implementation="flash_attention_2",
+    # attn_implementation="flash_attention_2",
     load_in_8bit=True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
@@ -278,6 +278,7 @@ def evaluate_model(model, tokenizer, num_test_samples=5):
     """Evaluate model on fixed set of positions"""
     model = model.to(accelerator.device).eval()
     print("evaluating on device:", model.device)
+    print("model precision:", model.dtype)
     test_prompts = generate_prompts_from_positions(SAMPLED_POSITIONS[:num_test_samples])
     results = []
     
