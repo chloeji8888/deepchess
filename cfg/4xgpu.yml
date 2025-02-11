@@ -3,7 +3,7 @@ debug: false
 distributed_type: MULTI_GPU
 downcast_bf16: 'no'
 enable_cpu_affinity: true
-gpu_ids: all
+gpu_ids: 0,1,2
 machine_rank: 0
 main_training_function: main
 mixed_precision: fp16
@@ -15,4 +15,3 @@ tpu_env: []
 tpu_use_cluster: false
 tpu_use_sudo: false
 use_cpu: false
-use_vllm: true

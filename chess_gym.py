@@ -59,14 +59,6 @@ class ChessEnv(gym.Env):
     def _get_observation(self):
         return self.board.fen()
     
-    def _get_reward(self):
-        # Basic reward function - modify based on training needs
-        if self.board.is_checkmate():
-            return 1.0  # Win
-        if self.board.is_game_over():
-            return -1.0  # Loss or draw
-        return 0.0  # Intermediate state
-    
     def _get_board_score(self):
         """Get position evaluation from Stockfish in centipawns"""
         self.init_engine()  # Ensure engine exists
@@ -167,6 +159,11 @@ def reward_function(prompts, completions):
                 move = re.search(r'([KQRNB]?[a-h]?[1-8]?x?[a-h][1-8](=[QRNB])?|O-O|O-O-O)[+#]?', completion).group(0)
                 # Apply player move
                 obs, reward, terminated, _, _ = local_env.step(move)
+                # if positive, clip to 1, else goto 0
+                if reward > 0:
+                    reward = 1
+                else:
+                    reward = 0
                 rewards.append(reward)
                 
                 samples_to_log.append({
@@ -184,7 +181,7 @@ def reward_function(prompts, completions):
                     "prompt": prompt,
                     "completion": completion,
                     "move": "INVALID",
-                    "reward": -10
+                    "reward": -1
                 })
                 
     finally:
@@ -226,6 +223,7 @@ grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     dataloader_pin_memory=True,
     report_to="wandb",
     disable_tqdm=False,
+    use_vllm=True,
 )
 
 peft_config = LoraConfig(
