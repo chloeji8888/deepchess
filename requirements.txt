@@ -1,0 +1,15 @@
+torch
+gymnasium
+torchvision
+python-chess
+transformers
+trl[vllm]
+peft
+wandb
+datasets
+accelerate
+bitsandbytes
+numpy
+flash-attn
+kagglehub
+pandas

@@ -16,21 +16,7 @@ source chess_env/bin/activate
 # Install Python packages
 echo "Installing Python dependencies..."
 pip install --upgrade pip
-pip install torch
-pip install gymnasium
-pip install torchvision 
-pip install python-chess
-pip install transformers
-pip install trl[vllm]
-pip install peft
-pip install wandb
-pip install datasets
-pip install accelerate
-pip install -U bitsandbytes
-pip install numpy
-pip install -U flash-attn --force-reinstall
-pip install kagglehub
-pip install pandas
+pip install -r requirements.txt
 
 echo "All dependencies installed successfully!"
 echo "config wandb with: export WANDB_API_KEY=<your_api_key>"
