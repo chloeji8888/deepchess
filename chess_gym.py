@@ -13,8 +13,6 @@ from datasets import Dataset
 from accelerate import Accelerator
 from multiprocessing import Pool, cpu_count
 
-
-
 accelerator = Accelerator()
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
@@ -206,6 +204,7 @@ model_id = "Qwen/Qwen2.5-1.5B-Instruct" #
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     # attn_implementation="flash_attention_2",
+    torch_dtype=torch.bfloat16,
     load_in_8bit=True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)

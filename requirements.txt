@@ -1,6 +1,4 @@
-torch
 gymnasium
-torchvision
 python-chess
 transformers
 trl[vllm]
@@ -10,6 +8,9 @@ datasets
 accelerate
 bitsandbytes
 numpy
-flash-attn
+flash_attn
+torch
+torchvision
 kagglehub
 pandas
+fsspec[http]==2024.9.0
