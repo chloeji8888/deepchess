@@ -205,7 +205,7 @@ model = AutoModelForCausalLM.from_pretrained(
     model_id,
     # attn_implementation="flash_attention_2",
     torch_dtype=torch.bfloat16,
-    load_in_8bit=True,
+    # load_in_8bit=True,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
