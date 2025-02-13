@@ -204,8 +204,9 @@ model_id = "Qwen/Qwen2.5-1.5B-Instruct" #
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
     # attn_implementation="flash_attention_2",
-    torch_dtype=torch.bfloat16,
-    # load_in_8bit=True,
+    # torch_dtype=torch.bfloat16,
+    load_in_8bit=True,
+    device_map="auto",
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
