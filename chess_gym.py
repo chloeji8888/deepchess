@@ -14,6 +14,9 @@ from accelerate import Accelerator
 from multiprocessing import Pool, cpu_count
 
 accelerator = Accelerator()
+print(f"Available CUDA devices: {torch.cuda.device_count()}")
+print(f"Current device: {torch.cuda.current_device()}")
+print(f"Device properties: {torch.cuda.get_device_properties(torch.cuda.current_device())}")
 
 STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
 
@@ -214,6 +217,18 @@ tokenizer = AutoTokenizer.from_pretrained(model_id)
 
 LLM_MAX_LENGTH = 256
 
+# Check if we should use vLLM (need at least one GPU free)
+total_gpus = torch.cuda.device_count()
+vllm_device = None
+use_vllm = False
+
+if total_gpus > 3:  # If we have more than 3 GPUs, we can use vLLM
+    use_vllm = True
+    vllm_device = f"cuda:{total_gpus-1}"  # Use the last GPU
+    print(f"Enabling vLLM on device: {vllm_device}")
+else:
+    print("Not enough GPUs for vLLM, disabling it")
+
 grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     output_dir="chess-grpo",
     learning_rate=1e-5,
@@ -223,8 +238,8 @@ grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     dataloader_pin_memory=True,
     report_to="wandb",
     disable_tqdm=False,
-    use_vllm=True,
-    vllm_device="cuda:3",
+    use_vllm=use_vllm,
+    vllm_device=vllm_device,
 )
 
 peft_config = LoraConfig(
