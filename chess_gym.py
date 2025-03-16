@@ -224,6 +224,7 @@ grpo_config = GRPOConfig( # TODO: upload model to HF hub (push to hub, etc.)
     report_to="wandb",
     disable_tqdm=False,
     use_vllm=True,
+    vllm_device="cuda:3",
 )
 
 peft_config = LoraConfig(
