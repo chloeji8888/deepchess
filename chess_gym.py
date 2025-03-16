@@ -12,13 +12,32 @@ import wandb
 from datasets import Dataset
 from accelerate import Accelerator
 from multiprocessing import Pool, cpu_count
+import os
 
 accelerator = Accelerator()
 print(f"Available CUDA devices: {torch.cuda.device_count()}")
 print(f"Current device: {torch.cuda.current_device()}")
 print(f"Device properties: {torch.cuda.get_device_properties(torch.cuda.current_device())}")
 
-STOCKFISH_PATH = "/usr/games/stockfish"  # This is the default path on Ubuntu/Debian
+# Try different Stockfish paths based on environment
+STOCKFISH_PATHS = [
+    "/usr/local/bin/stockfish",
+    "/usr/games/stockfish",
+    "/usr/bin/stockfish",
+    # Add user's home directory
+    os.path.expanduser("~/stockfish")
+]
+
+def find_stockfish():
+    """Find the first valid stockfish executable"""
+    for path in STOCKFISH_PATHS:
+        if os.path.exists(path) and os.access(path, os.X_OK):
+            print(f"Found stockfish at: {path}")
+            return path
+    print("WARNING: Stockfish not found! Please install it or specify the correct path.")
+    return STOCKFISH_PATHS[0]  # Return first path as default
+
+STOCKFISH_PATH = find_stockfish()
 
 def load_positions(file_path):
     """Load chess positions from a text file containing FEN strings"""
@@ -199,17 +218,16 @@ def reward_function(prompts, completions):
     
     return rewards
 
-# Initialize environment and model - Fix path here
+# Initialize environment and model
 env = ChessEnv(
-    agent_color=chess.WHITE  # or chess.BLACK
+    agent_color=chess.WHITE,
+    stockfish_path=STOCKFISH_PATH
 )
 model_id = "Qwen/Qwen2.5-1.5B-Instruct" # 
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
-    # attn_implementation="flash_attention_2",
-    # torch_dtype=torch.bfloat16,
-    load_in_8bit=True,
-    device_map="auto",
+    attn_implementation="flash_attention_2",
+    torch_dtype=torch.bfloat16,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
 
