@@ -1,3 +1,3 @@
-
 export TOKENIZERS_PARALLELISM=false
-accelerate launch --config_file cfg/4xgpu.yml chess_gym.py
+# Use 3 GPUs for training, leaving 1 GPU for vLLM inference
+accelerate launch --num_processes 3 chess_gym.py
