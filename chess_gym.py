@@ -21,15 +21,26 @@ print(f"Device properties: {torch.cuda.get_device_properties(torch.cuda.current_
 
 # Try different Stockfish paths based on environment
 STOCKFISH_PATHS = [
-    "/usr/local/bin/stockfish",
+    "/usr/local/bin/stockfish",  # Homebrew installation
     "/usr/games/stockfish",
     "/usr/bin/stockfish",
     # Add user's home directory
-    os.path.expanduser("~/stockfish")
+    os.path.expanduser("~/stockfish/stockfish")
 ]
 
 def find_stockfish():
     """Find the first valid stockfish executable"""
+    # First try to find stockfish in PATH
+    try:
+        import subprocess
+        which_output = subprocess.check_output(['which', 'stockfish'], text=True).strip()
+        if which_output and os.path.exists(which_output) and os.access(which_output, os.X_OK):
+            print(f"Found stockfish in PATH at: {which_output}")
+            return which_output
+    except (subprocess.SubprocessError, FileNotFoundError):
+        pass
+        
+    # Fall back to checking known paths
     for path in STOCKFISH_PATHS:
         if os.path.exists(path) and os.access(path, os.X_OK):
             print(f"Found stockfish at: {path}")
@@ -226,7 +237,6 @@ env = ChessEnv(
 model_id = "Qwen/Qwen2.5-1.5B-Instruct" # 
 model = AutoModelForCausalLM.from_pretrained(
     model_id,
-    attn_implementation="flash_attention_2",
     torch_dtype=torch.bfloat16,
 )
 tokenizer = AutoTokenizer.from_pretrained(model_id)
