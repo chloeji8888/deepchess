@@ -65,7 +65,7 @@ SAMPLED_POSITIONS = load_positions("sampled_positions.txt")
 
 
 class ChessEnv(gym.Env):
-    def __init__(self, skill_level=20, agent_color=chess.WHITE, stockfish_path="/usr/games/stockfish"):
+    def __init__(self, skill_level=20, agent_color=chess.WHITE, stockfish_path=STOCKFISH_PATH):
         super().__init__()
         self.board = chess.Board()
         self.action_space = spaces.Discrete(4677)  # Max number of legal moves in chess
